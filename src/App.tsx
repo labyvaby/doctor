@@ -1,9 +1,10 @@
-import {  Refine } from "@refinedev/core";
+import { Refine } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import { ThemedLayout, useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
+import "./styles/layout.css";
 
 import routerProvider, {
   DocumentTitleHandler,
@@ -29,6 +30,8 @@ import {
   CategoryShow,
 } from "./pages/categories";
 import { NotFound } from "./pages/not-found";
+import Home from "./pages/home";
+// import { SubHeader } from "./components/subHeader";
 
 function App() {
   return (
@@ -42,6 +45,10 @@ function App() {
                 notificationProvider={useNotificationProvider()}
                 routerProvider={routerProvider}
                 resources={[
+                  {
+                    name: "home",
+                    list: "/home",
+                  },
                   {
                     name: "blog_posts",
                     list: "/blog-posts",
@@ -84,8 +91,9 @@ function App() {
                   >
                     <Route
                       index
-                      element={<NavigateToResource resource="blog_posts" />}
+                      element={<NavigateToResource resource="home" />}
                     />
+                    <Route path="/home" element={<Home />} />
                     <Route path="/blog-posts">
                       <Route index element={<BlogPostList />} />
                       <Route path="create" element={<BlogPostCreate />} />

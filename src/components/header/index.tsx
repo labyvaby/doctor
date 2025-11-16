@@ -24,7 +24,6 @@ type IUser = {
   avatar: string;
 };
 
-// Extend props with our own controls for toggling the sider
 type HeaderProps = RefineThemedLayoutHeaderProps & {
   collapsed?: boolean;
   onToggle?: () => void;
@@ -57,7 +56,6 @@ export const Header: React.FC<HeaderProps> = ({ sticky = true, onToggle }) => {
 
   return (
     <AntdLayout.Header style={headerStyles}>
-      {/* Left: burger + brand */}
       <Space size={12} align="center">
         <Button
           type="text"
@@ -73,7 +71,7 @@ export const Header: React.FC<HeaderProps> = ({ sticky = true, onToggle }) => {
       {/* Center: search */}
       <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
         <Input
-          placeholder="Поиск Главная"
+          
           prefix={<SearchOutlined />}
           style={{ maxWidth: 800, background: token.colorFillTertiary }}
         />
