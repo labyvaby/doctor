@@ -1,0 +1,13 @@
+:root {
+  --header-height: 64px;
+}
+
+/* Push content below fixed header in ThemedLayout (Layout > Layout structure) */
+.ant-layout > .ant-layout {
+  padding-top: var(--header-height);
+}
+
+/* Optional: ensure page scroll starts below header even if additional wrappers appear */
+.ant-layout-content {
+  padding-top: 0;
+}

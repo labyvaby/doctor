@@ -1,0 +1,64 @@
+.custom-sider {
+  position: sticky;
+  top: 64px; /* keep below fixed header */
+  height: calc(100vh - 64px);
+  overflow: auto;
+  border-right: 1px solid #f0f0f0;
+}
+
+.custom-menu {
+  border-inline-end: none !important;
+  background: transparent !important;
+}
+
+.custom-menu .ant-menu-item {
+  height: 40px;
+  line-height: 40px;
+  margin: 6px 12px;
+  padding-inline: 12px !important;
+  border-radius: 20px;
+}
+
+/* Full-row highlight with even side paddings */
+.custom-menu .ant-menu-item-selected,
+.custom-menu .ant-menu-item.is-active {
+  background: #e6f4ff !important;
+}
+/* Hide default right selection bar for inline mode */
+.custom-menu .ant-menu-item::after {
+  border-inline-end: 0 !important;
+  border-right: 0 !important;
+}
+
+/* In collapsed mode, keep only circular glow on icon, remove row background */
+.ant-layout-sider-collapsed.custom-sider .custom-menu .ant-menu-item-selected,
+.ant-layout-sider-collapsed.custom-sider .custom-menu .ant-menu-item.is-active {
+  background: transparent !important;
+}
+
+/* Circular glow around icon when collapsed */
+.ant-layout-sider-collapsed.custom-sider .custom-menu .ant-menu-item .ant-menu-item-icon {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ant-layout-sider-collapsed.custom-sider .custom-menu .ant-menu-item-selected .ant-menu-item-icon,
+.ant-layout-sider-collapsed.custom-sider .custom-menu .ant-menu-item.is-active .ant-menu-item-icon {
+  background: #e6f4ff;
+  color: #1677ff;
+}
+
+.custom-menu .ant-menu-item .anticon {
+  font-size: 18px;
+}
+
+.custom-menu-divider {
+  height: 1px;
+  background: #eeeeee;
+  margin: 10px 8px;
+  border-radius: 1px;
+}

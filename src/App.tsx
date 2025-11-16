@@ -1,13 +1,8 @@
-import { GitHubBanner, Refine } from "@refinedev/core";
+import {  Refine } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import {
-  ErrorComponent,
-  ThemedLayout,
-  ThemedSider,
-  useNotificationProvider,
-} from "@refinedev/antd";
+import { ThemedLayout, useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import routerProvider, {
@@ -18,8 +13,9 @@ import routerProvider, {
 import dataProvider from "@refinedev/simple-rest";
 import { App as AntdApp } from "antd";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
-import { Header } from "./components/header";
+import { Header, CustomSider } from "./components";
 import { ColorModeContextProvider } from "./contexts/color-mode";
+import { LayoutProvider } from "./contexts/layout";
 import {
   BlogPostCreate,
   BlogPostEdit,
@@ -32,18 +28,18 @@ import {
   CategoryList,
   CategoryShow,
 } from "./pages/categories";
+import { NotFound } from "./pages/not-found";
 
 function App() {
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <AntdApp>
             <DevtoolsProvider>
               <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={useNotificationProvider}
+                notificationProvider={useNotificationProvider()}
                 routerProvider={routerProvider}
                 resources={[
                   {
@@ -76,12 +72,14 @@ function App() {
                 <Routes>
                   <Route
                     element={
-                      <ThemedLayout
-                        Header={() => <Header sticky />}
-                        Sider={(props) => <ThemedSider {...props} fixed />}
-                      >
-                        <Outlet />
-                      </ThemedLayout>
+                      <LayoutProvider>
+                        <ThemedLayout
+                          Header={() => <Header sticky />}
+                          Sider={(props) => <CustomSider {...props} />}
+                        >
+                          <Outlet />
+                        </ThemedLayout>
+                      </LayoutProvider>
                     }
                   >
                     <Route
@@ -100,7 +98,17 @@ function App() {
                       <Route path="edit/:id" element={<CategoryEdit />} />
                       <Route path="show/:id" element={<CategoryShow />} />
                     </Route>
-                    <Route path="*" element={<ErrorComponent />} />
+                    <Route path="search" element={<NotFound />} />
+                    <Route path="costs" element={<NotFound />} />
+                    <Route path="doctors" element={<NotFound />} />
+                    <Route path="products" element={<NotFound />} />
+                    <Route path="sales" element={<NotFound />} />
+                    <Route path="warehouse" element={<NotFound />} />
+                    <Route path="blacklist" element={<NotFound />} />
+                    <Route path="diagnostics" element={<NotFound />} />
+                    <Route path="about" element={<NotFound />} />
+                    <Route path="apps" element={<NotFound />} />
+                    <Route path="*" element={<NotFound />} />
                   </Route>
                 </Routes>
 
