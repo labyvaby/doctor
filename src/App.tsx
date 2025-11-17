@@ -31,6 +31,8 @@ import {
 } from "./pages/categories";
 import { NotFound } from "./pages/not-found";
 import Home from "./pages/home";
+import PatientsSearch from "./pages/patients-search";
+import VisitsPage from "./pages/visits";
 // import { SubHeader } from "./components/subHeader";
 
 function App() {
@@ -106,8 +108,9 @@ function App() {
                       <Route path="edit/:id" element={<CategoryEdit />} />
                       <Route path="show/:id" element={<CategoryShow />} />
                     </Route>
-                    <Route path="search" element={<NotFound />} />
-                    <Route path="costs" element={<NotFound />} />
+                    <Route path="/search" element={<PatientsSearch />} />
+                    <Route path="/visits" element={<VisitsPage />} />
+                    <Route path="/costs" element={<NotFound />} />
                     <Route path="doctors" element={<NotFound />} />
                     <Route path="products" element={<NotFound />} />
                     <Route path="sales" element={<NotFound />} />

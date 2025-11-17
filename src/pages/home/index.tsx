@@ -186,14 +186,17 @@ const Home: React.FC = () => {
 
   const doctorsOptions = useMemo(
     () => pickUnique((x) => String(x["Доктор ID"] || "")),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [allRaw]
   );
   const patientsOptions = useMemo(
     () => pickUnique((x) => String(x["Пациент ID"] || "")),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [allRaw]
   );
   const servicesOptions = useMemo(
     () => pickUnique((x) => String(x["Услуга ID"] || "")),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [allRaw]
   );
   const yearsOptions = useMemo(() => {
@@ -268,7 +271,7 @@ const Home: React.FC = () => {
             }
             bodyStyle={{ padding: 0 }}
           >
-            <div style={{ maxHeight: 520, overflow: "auto" }}>
+            <div style={{ maxHeight: 700, overflow: "auto" }}>
               <List
                 itemLayout="vertical"
                 dataSource={appointments}
@@ -301,7 +304,7 @@ const Home: React.FC = () => {
             title={<CardHeader title={<span>Процедуры в этом месяце</span>} extraRight={<Button size="small" icon={<PlusOutlined />}>Создать</Button>} />}
             bodyStyle={{ padding: 0 }}
           >
-            <div style={{ maxHeight: 520, overflow: "auto" }}>
+            <div style={{ maxHeight: 700, overflow: "auto" }}>
               <List
                 itemLayout="horizontal"
                 dataSource={procedures}
@@ -330,7 +333,7 @@ const Home: React.FC = () => {
               title={<CardHeader title={<span>Продажи</span>} extraRight={<Button size="small" icon={<PlusOutlined />}>Продажа</Button>} />}
               bodyStyle={{ padding: 0 }}
             >
-              <div style={{ maxHeight: 240, overflow: "auto" }}>
+              <div style={{ maxHeight: 325, overflow: "auto" }}>
                 <List
                   itemLayout="horizontal"
                   dataSource={sales}
@@ -353,7 +356,7 @@ const Home: React.FC = () => {
               title={<CardHeader title={<span>Расходы в этом месяце</span>} extraRight={<Button size="small" icon={<PlusOutlined />}>Расход</Button>} />}
               bodyStyle={{ padding: 0 }}
             >
-              <div style={{ maxHeight: 260, overflow: "auto" }}>
+              <div style={{ maxHeight: 320, overflow: "auto" }}>
                 {expenses.map((day) => (
                   <div key={day.date}>
                     <div style={{ padding: "8px 12px", color: token.colorTextTertiary }}>{day.date}</div>
@@ -382,10 +385,10 @@ const Home: React.FC = () => {
 
       <Drawer
         title="Фильтры"
-        placement="left"
+        placement="right"
         open={filterOpen}
         onClose={() => setFilterOpen(false)}
-        width={320}
+        width={400}
       >
         <Space direction="vertical" style={{ width: "100%" }} size="middle">
           <div>

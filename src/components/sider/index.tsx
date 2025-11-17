@@ -34,7 +34,7 @@ type NavDivider = { key: string; type: "divider" };
 const NAV_ITEMS: (NavLinkItem | NavDivider)[] = [
   { key: "home", label: "Главная", icon: <HomeOutlined />, path: "/" },
   { key: "search", label: "Поиск пациента", icon: <SearchOutlined />, path: "/search" },
-  { key: "visits", label: "Приемы", icon: <ScheduleOutlined />, path: "/blog-posts" },
+  { key: "visits", label: "Приемы", icon: <ScheduleOutlined />, path: "/visits" },
   { key: "categories", label: "Категории", icon: <AppstoreOutlined />, path: "/categories" },
   { key: "costs", label: "Расходы", icon: <DollarCircleOutlined />, path: "/costs" },
   { key: "doctors", label: "Сотрудники", icon: <TeamOutlined />, path: "/doctors" },

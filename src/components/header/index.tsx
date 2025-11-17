@@ -14,6 +14,7 @@ import React, { useContext } from "react";
 import { ColorModeContext } from "../../contexts/color-mode";
 import { LayoutContext } from "../../contexts/layout";
 import { MenuOutlined, SearchOutlined, HeartTwoTone } from "@ant-design/icons";
+import { useLocation, useNavigate } from "react-router";
 
 const { Text } = Typography;
 const { useToken } = theme;
@@ -34,6 +35,9 @@ export const Header: React.FC<HeaderProps> = ({ sticky = true, onToggle }) => {
   const { data: user } = useGetIdentity<IUser>();
   const { mode, setMode } = useContext(ColorModeContext);
   const { toggleSider } = useContext(LayoutContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const q = new URLSearchParams(location.search).get("q") || "";
 
   const headerStyles: React.CSSProperties = {
     backgroundColor: token.colorBgElevated,
@@ -71,8 +75,14 @@ export const Header: React.FC<HeaderProps> = ({ sticky = true, onToggle }) => {
       {/* Center: search */}
       <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
         <Input
-          
+          allowClear
+          defaultValue={q}
+          placeholder="Поиск пациента"
           prefix={<SearchOutlined />}
+          onPressEnter={(e) => {
+            const v = (e.target as HTMLInputElement).value.trim();
+            navigate(`/search${v ? `?q=${encodeURIComponent(v)}` : ""}`);
+          }}
           style={{ maxWidth: 800, background: token.colorFillTertiary }}
         />
       </div>
